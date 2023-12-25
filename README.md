@@ -20,6 +20,71 @@ Before deploying this stack, ensure you have the following:
 - **Optional Domain Setup**: If `setupDomain` is set to true, the stack will include ACM certificate and Route 53 domain configurations.
 - **ECS Service**: Deploys an ECS service in the ECS Cluster, running on EC2 instances
 
+
+```
++-------------------------------------------------+
+|                    AWS Cloud                    |
+|                                                 |
+|  +-----------------+                            |
+|  |                 |                            |
+|  |   ECS Cluster   |                            |
+|  |                 |                            |
+|  +--------+--------+                            |
+|           |                                     |
+|           |                                     |
+|  +--------v--------+   +---------------------+  |
+|  |                 |   |                     |  |
+|  |   ECS Service   +--->  Application Load   |  |
+|  |                 |   |  Balancer           |  |
+|  +--------+--------+   +----------+----------+  |
+|           |                        |            |
+|           |                        |            |
+|  +--------v--------+               |            |
+|  |                 |               |            |
+|  |   EC2 Instances |               |            |
+|  |                 |               |            |
+|  +--------+--------+               |            |
+|           |                        |            |
+|  +--------v--------+               |            |
+|  |                 |               |            |
+|  |      ASG        |               |            |
+|  | (Auto Scaling   |               |            |
+|  |  Group)         |               |            |
+|  |                 |               |            |
+|  +--------+--------+               |            |
+|           |                        |            |
+|  +--------v--------+               |            |
+|  |                 |               |            |
+|  | Capacity        +<--------------+            |
+|  | Provider        |                            |
+|  |                 |                            |
+|  +--------+--------+                            |
+|           |                                     |
+|           |                                     |
+|  +--------v--------+                            |
+|  |                 |                            |
+|  |    VPC          |                            |
+|  |                 |                            |
+|  +--------+--------+                            |
+|           |                                     |
+|           |                                     |
+|  +--------v--------+                            |
+|  |                 |                            |
+|  |  Route 53       |                            |
+|  |                 |                            |
+|  +--------+--------+                            |
+|           |                                     |
+|           |                                     |
+|  +--------v--------+                            |
+|  |                 |                            |
+|  |  ACM Certificate|                            |
+|  |                 |                            |
+|  +-----------------+                            |
+|                                                 |
++-------------------------------------------------+
+
+```
+
 ## Usage
 
 1. **Clone the Repository**: Clone or download the project repository to your local environment.
